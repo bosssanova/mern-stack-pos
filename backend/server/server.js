@@ -24,7 +24,10 @@ app.use(bodyParser.json())
 // DB Config
 const db = require("../config/keys").mongoURI
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI || db, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI || db, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err))
 
@@ -48,7 +51,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'))
 
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'clientm', 'build', 'index.html'))
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
   })
 }
 app.listen(port, () => console.log(`Server up and running on port ${port} !`))
